@@ -31,7 +31,7 @@ class PersonController {
     async update(req, res) {
         try {
             const result = await personService.update(req.params.id, req.body)
-            return res.status(200).json(result)
+            return res.status(200).json("person data update completed")
         } catch (error) {
             return res.status(400).json(error);
           }
@@ -40,10 +40,14 @@ class PersonController {
     async delete(req, res) {
         try {
             const result = await personService.delete(req.params.id)
-            return res.status(204).json(result)
+
+            if (!result) {
+                return res.status(200).json("unknown person id")
+            }
+            return res.status(200).json("successfully deleted person")
         } catch (error) {
             return res.status(400).json(error);
-          }
+          } 
     }
 }
 
