@@ -3,10 +3,10 @@ const database = require("../../database/postgresql/Index.js")
 
 const Person = database.define("Person", {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true           
+       
     }, 
     name: {
         type: DataTypes.STRING(50),
