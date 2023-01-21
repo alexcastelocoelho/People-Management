@@ -14,10 +14,11 @@ const Person = database.define("Person", {
     },
     cpf: {
         type: DataTypes.STRING(14),
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     birthday: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
     email: {
