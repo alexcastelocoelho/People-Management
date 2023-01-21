@@ -1,0 +1,217 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "People management",
+        "description":  "Rest api to manage people",        
+        "contact": {
+            "name": "Alex Coelho",
+            "url": "https://github.com/alexcastelocoelho"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3333/",
+            "description": "application server"
+        }
+    ],
+    "paths": {
+        "/people": {
+            "post": {
+                "summary": "Create a new Person",
+                "description": "route to Create a new person",
+                "tags": ["Person"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                           "schema": {
+                                "$ref": "#/components/schemas/Person"
+                           },
+                           "examples": {
+                            "person":{
+                                "value": {
+                                    "name": "douglas",
+                                    "cpf": "371.118.543-65",
+                                    "birthday": "08/04/2004",
+                                    "email": "doug@gmail.com",
+                                    "password": "prince!@&*"
+                                }
+                            }
+                           }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Person"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "get": {
+                "description": "list all people",
+                "summary": "route to List all people",
+                "tags": ["Person"],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Person"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad request"
+                    }
+                }
+            }
+            
+        },
+        "/people/{id}": {
+            "get": {
+                "summary": "list a single Person",
+                "description": "route to list a single Person",
+                "tags": ["Person"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "sdsd",
+                        "required": true
+                        
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Person"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found"
+                    }
+
+                }
+            },
+            "put": {
+                "summary": "Update a Person",
+                "description": "route to Update a person",
+                "tags": ["Person"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "sdsd",
+                        "required": true
+                        
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                           "schema": {
+                                "$ref": "#/components/schemas/Person"
+                           },
+                           "examples": {
+                            "user":{
+                                "value": {
+                                    "name": "douglas",
+                                    "cpf": "371.118.543-65",
+                                    "birthday": "08/04/2004",
+                                    "email": "doug@gmail.com",
+                                    "password": "prince!@&*"
+                                }
+                            }
+                           }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Person"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found"
+                    }
+
+                }
+            },
+            "delete": {
+                "summary": "delete person",
+                "description": "route to delete person",
+                "tags": ["Person"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "parameter to delete a person",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "deleted Person"                        
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+        
+       
+        
+    },
+    "components": {
+        "schemas": {
+            "Person": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
+                    },
+                    "birthday": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
