@@ -15,7 +15,9 @@ const Person = database.define("Person", {
     cpf: {
         type: DataTypes.STRING(14),
         allowNull: false,
-        unique: true
+        unique: {
+            msg: "person with cpf already exists"
+        }
     },
     birthday: {
         type: DataTypes.DATEONLY,
