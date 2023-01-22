@@ -1,10 +1,9 @@
 const personRepository = require("../repository/PersonRepository")
 
 class PersonService {
-    async create(payload) {                   
-        const result = await personRepository.create(payload)
-        return result      
-       
+    async create(payload) {           
+           const result = await personRepository.create(payload)
+           return result             
     }
 
     async list(payload) {
@@ -24,7 +23,7 @@ class PersonService {
 
     async delete(id) {
         const result = await personRepository.delete(id)
-        
+        return result
     }
 }
 
